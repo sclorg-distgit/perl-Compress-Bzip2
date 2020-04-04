@@ -1,7 +1,7 @@
 %{?scl:%scl_package perl-Compress-Bzip2}
 
 # Run optional tests
-%if ! (0%{?rhel})
+%if ! (0%{?rhel}) && ! (0%{?scl:1})
 %bcond_without perl_Compress_Bzip2_enables_optional_test
 %else
 %bcond_with perl_Compress_Bzip2_enables_optional_test
@@ -9,7 +9,7 @@
 
 Name:           %{?scl_prefix}perl-Compress-Bzip2
 Version:        2.26
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        Interface to Bzip2 compression library
 # bzlib-src/win-tst-dlltest.c (unbundled):  Public Domain
 # bzlib-src/LICENSE (unbundled):            BSD
@@ -90,6 +90,9 @@ find %{buildroot} -type f -name '*.bs' -empty -delete
 %{_mandir}/man3/*.3pm*
 
 %changelog
+* Tue Jan 07 2020 Jitka Plesnikova <jplesnik@redhat.com> - 2.26-15
+- Re-rebuild of bootstrapped packages
+
 * Mon Jan 06 2020 Jitka Plesnikova <jplesnik@redhat.com> - 2.26-14
 - SCL
 
